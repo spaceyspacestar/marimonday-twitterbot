@@ -31,7 +31,7 @@ def tweet():
 #Make sure it's actually running since it's running in docker
 def checkifrunning():
     #Login
-    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret
+    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
     #Weekly message check up
