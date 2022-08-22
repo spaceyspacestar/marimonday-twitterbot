@@ -37,10 +37,11 @@ def checkifrunning():
     auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
     api = tweepy.API(auth)
     #lol
-    api.send_direct_message(recipient_id=ownerid, text="This message is to ensure the program is running correctly!")
+    api.send_direct_message(recipient_id=ownerid, text="This message is to ensure the bot is still alive")
 
 #Actually post the video to the site
 if __name__ == '__main__':
     #Check if today is a monday
     if (datetime.datetime.today() == MONDAY):
         tweet()
+        checkifrunning()
