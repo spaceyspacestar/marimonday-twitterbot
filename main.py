@@ -1,9 +1,8 @@
-from calendar import MONDAY
 import tweepy #API Stuff
 import json
 
 #Scheduling
-import datetime
+import schedule
 import time
 
 with open("auth.json", "r") as file:
@@ -23,7 +22,7 @@ def tweet():
     auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
     api = tweepy.API(auth)
     #Upload video to the site
-    media = api.media_upload("MariDay.mp4")
+    media = api.media_upload("Mari.mp4")
     try:
         api.update_status(status="", media_ids=[media.media_id])
         print("Successfully posted video")
@@ -37,11 +36,14 @@ def checkifrunning():
     auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
     api = tweepy.API(auth)
     #lol
-    api.send_direct_message(recipient_id=ownerid, text="This message is to ensure the bot is still alive")
+    api.send_direct_message(recipient_id=ownerid, text="This message is to ensure the program is running correctly!")
 
 #Actually post the video to the site
 if __name__ == '__main__':
-    #Check if today is a monday
-    if (datetime.datetime.today() == MONDAY):
-        tweet()
-        checkifrunning()
+    #First check if the program is still alive
+    checkifrunning()
+    #then we can schedule the time
+    schedule.every.monday.at("04:00").do(tweet)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
