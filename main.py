@@ -41,9 +41,9 @@ def checkifrunning():
 #Actually post the video to the site
 if __name__ == '__main__':
     #First check if the program is still alive
-    checkifrunning()
     #then we can schedule the time
     schedule.every.monday.at("04:00").do(tweet)
+    schedule.every.wednesday.at("16:00").do(checkifrunning) #Check if the heroku server is alive
     while True:
         schedule.run_pending()
         time.sleep(1)
