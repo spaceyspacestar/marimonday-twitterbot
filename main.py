@@ -1,8 +1,9 @@
+from calendar import MONDAY
 import tweepy #API Stuff
 import json
 
 #Scheduling
-import schedule
+import datetime
 import time
 
 with open("auth.json", "r") as file:
@@ -40,10 +41,6 @@ def checkifrunning():
 
 #Actually post the video to the site
 if __name__ == '__main__':
-    #But check if docker is running the app first,
-    checkifrunning()
-    #then NOW run this once so it runs every mondays
-    schedule.every().monday.at("09:00").do(tweet)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    #Check if today is a monday
+    if (datetime.datetime.today() == MONDAY):
+        tweet()
