@@ -20,7 +20,7 @@ def tweet():
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
     #Upload video to the site
-    media = api.media_upload(filename="./Mari.mp4", chunked=True, media_category='tweet_video')
+    media = api.media_upload(filename="Mari.mp4")
     try:
         api.update_status(status="", media_ids=[media.media_id])
         print("Successfully posted video")
