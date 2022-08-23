@@ -28,7 +28,7 @@ def tweet():
         print("Failed to post video, Logging information to Owner's DMs.")
         api.send_direct_message(recipient_id=ownerid, text="An error happened.\nFull info:\n%s" % exception) #Log error to your DMs
 
-#Make sure it's actually running since it's running in docker
+#Make sure the task is still alive via this function
 def checkifrunning():
     #Login
     auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret)
